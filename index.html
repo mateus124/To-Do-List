@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To.do List</title>
+    <link rel="stylesheet" href="assets/styles/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="assets/images/Logo.png" alt="logo">
+        </div>
+    </header>
+    <main>
+        <div class="title">
+            <h1>Tarefas</h1>
+        </div>
+        <div class="main-list">
+            <ul class="list">
+
+                <li class="task hidden">
+                    <div class="task-check">
+                        <form method="POST">
+                            <input type="checkbox" name="done" id="done" class="css-checkbox">
+                            <label for="done"></label>
+                        </form>
+                    </div>
+                    <div class="task-content">
+                        <div class="task-data">
+                            <h2>Fazer o merge da tarefa</h2>
+                            <p>Preciso fazer o merge da task "incluir botao Download"</p>
+                        </div>
+                    </div>
+                    <div class="task-menu">
+                        <button class="task-edit"><img src="assets/images/edit.png" alt="edit task"></button>
+                        <button class="task-delete"><img src="assets/images/trash.png" alt="delete task"></button>
+                    </div>
+                </li>
+            </ul>
+            <div class="notask">
+                <h2>Você ainda não criou nenhuma tarefa</h2>  
+                <p>Não se preocupe, suas novas tarefas irão aparecer aqui.</p>
+            </div>
+        </div>
+        <div class="new-task">
+            <button class="new-task-button"><img src="assets/images/add.png" alt="add task"><span>Adicionar tarefa</span></button>
+        </div>
+
+        <div class="modal-bg"></div>
+        <aside class="modal">
+            <div class="modal-close">
+                <img src="assets/images/close.png" alt="close-modal">
+            </div>
+            <div class="modal-content">
+                <div class="modal-title">
+                    <p>Salvar</p>
+                    <h2>Fazer o merge da tarefa</h2>
+                </div>
+                <div class="modal-data">
+                    <form class="modal-form">
+                        <div class="modal-input-box">
+                            <label for="name">Nome</label>
+                            <input type="text" name="name" id="name">
+                        </div>
+                        <div class="modal-input-box">
+                            <label for="desc">Descrição (opcional)</label>
+                            <textarea name="desc" id="desc" rows="10"></textarea>
+                        </div>
+                        <div class="modal-buttons">
+                            <button class="modal-close">Fechar</button>
+                            <input type="submit" value="Salvar tarefa">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

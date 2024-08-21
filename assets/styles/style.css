@@ -1,0 +1,305 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    --font: "Inter", sans-serif;
+    --bgColor: #2B2D31;
+    --NewTaskGray: #989898;
+    --white: #FFF;
+    --ButtonBlue: #1D46CA;
+    --ButtonHoverBlue: #11276E;
+    --ButtonHoverGray: #444444;
+    --TaskHoverGray: #35373C;
+    --doneBlue: #4772FA;
+    --textGray: #C1C1C1;
+    --lineGray: #3C4043;
+    --inputBg: #535353;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font);
+}
+
+body {
+    background-color: var(--bgColor);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10vh 0;
+}
+
+ul {
+    list-style: none;
+}
+
+/* MAIN */
+main {
+    margin-top: 5vh;
+}
+
+.title {
+    border-bottom: 1px solid var(--lineGray);
+    padding-bottom: 1vh;
+}
+
+.title > h1{
+    font-size: 1.5rem;
+    font-weight: normal;
+}
+
+/* TASKS */
+.main-list {
+    margin-top: 5vh;
+}
+
+.task {
+    width: 40vw;
+    display: flex;
+    align-items: center;
+    column-gap: 1vw;
+    border-bottom: 1px solid var(--lineGray);
+    padding: 1vw 2vh;
+    margin-bottom: 1vh;
+    transition: .3s;
+}
+
+.task:hover {
+    background-color: var(--TaskHoverGray);
+    transition: .3s;
+}
+
+.task-data > h2 {
+    font-size: 1.3rem;
+    font-weight: normal;
+}
+
+.task-data > p {
+    margin-top: 5px;
+    font-size: .8rem;
+    color: var(--textGray);
+}
+
+.hidden {
+    display: none;
+}
+
+.checked {
+    text-decoration: line-through;
+}
+
+/* TASK MENU */
+.task-menu {
+    margin-left: auto;
+    display: flex;
+    column-gap: 1vh;
+}
+
+.task-menu button {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.task-menu button:hover {
+    cursor: pointer;
+}
+
+.task-menu button > img {
+    width: 100%;
+}
+
+/* CHECKBOX */
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border: 2px solid var(--NewTaskGray);
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--doneBlue); 
+    border: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="white"><path fill-rule="evenodd" d="M16.707 4.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 11.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>');
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+input[type="checkbox"]:focus {
+    outline: none;
+}
+
+/* NO TASK ALERT */
+.notask {
+    padding: 0 5vw;
+    text-align: center;
+    margin-bottom: 5vh;
+}
+
+.notask h2 {
+    font-weight: 600;
+}
+
+.notask p {
+    color: var(--textGray);
+    font-size: .9rem;
+}
+
+/* NEW TASK BUTTON */
+
+.new-task {
+    margin-top: 5vh;
+}
+
+.new-task button {
+    background-color: transparent;
+    border: 2px dashed var(--NewTaskGray);
+    width: 100%;
+    padding: 20px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    color: var(--NewTaskGray);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+}
+
+.new-task button:hover {
+    color: var(--white);
+    border-color: var(--white);
+    transition: .3s;
+}
+
+/* MODAL */
+
+.modal {
+    position: fixed;
+    background-color: var(--bgColor);
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 45vw;
+    padding: 0 5vw;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: .3s;
+    display: none;
+}
+
+.modal-show {
+    display: flex;
+}
+
+.modal-close {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 1vh;
+}
+
+.modal-close img {
+    cursor: pointer;
+}
+
+.modal > div {
+    width: 75%;
+}
+
+.modal-bg {
+    background-color: rgba(0, 0, 0, 0.35);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 65vw;
+    height: 100vh;
+    display: none;
+}
+
+.modal-bg-show {
+    display: block;
+    transition: .3s;
+}
+
+.modal-input-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5vh;
+}
+
+.modal-input-box label {
+    margin-bottom: 2px;
+}
+
+.modal-data {
+    margin-top: 8vh;
+}
+
+.modal-title > p {
+    color: var(--textGray);
+}
+
+.modal-input-box input,
+.modal-data textarea {
+    background-color: var(--TaskHoverGray);
+    border: 1px solid var(--inputBg);
+    color: var(--white);
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    font-size: .9rem;
+}
+
+.modal-buttons {
+    display: flex;
+    column-gap: 10px;
+    justify-content: end;
+    align-items: center;
+}
+
+.modal-buttons button {
+    font-size: 1rem;
+    color: var(--white);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: .3s;
+    padding: 10px;
+    border-radius: 5px;
+    transition: .3s;
+}
+
+.modal-buttons button:hover {
+    background-color: var(--ButtonHoverGray);
+    transition: .3s;
+}
+
+.modal-buttons input {
+    color: var(--white);
+    background-color: var(--ButtonBlue);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.modal-buttons input:hover {
+    background-color: var(--ButtonHoverBlue);
+    transition: .3s;
+}
