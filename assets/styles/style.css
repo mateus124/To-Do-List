@@ -77,7 +77,6 @@ main {
 }
 
 .task-data > p {
-    margin-top: 5px;
     font-size: .8rem;
     color: var(--textGray);
 }
@@ -197,7 +196,6 @@ input[type="checkbox"]:focus {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    transition: .3s;
     display: none;
 }
 
@@ -231,7 +229,6 @@ input[type="checkbox"]:focus {
 
 .modal-bg-show {
     display: block;
-    transition: .3s;
 }
 
 .modal-input-box {
@@ -302,4 +299,45 @@ input[type="checkbox"]:focus {
 .modal-buttons input:hover {
     background-color: var(--ButtonHoverBlue);
     transition: .3s;
+}
+
+/* BREAK POINTS */
+
+@media screen and (max-width: 900px) {
+    header {
+        margin-top: 5vh;
+    }
+    .modal {
+        top: 50%;
+        right: 50%;
+        transform: translate(50%, -50%);
+        height: 80vh;
+        padding: 5vh 0;
+        border-radius: 10px;
+        width: 65vw;
+    }
+    .modal-bg {
+        width: 100vw;
+    }
+    .modal-close img {
+        display: none;
+    }
+    body {
+        padding: 0 5vh;
+    }
+    .task-data {
+        margin-left: 5px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .task {
+        width: 80vw;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    .modal {
+        width: 80%;
+    }
 }
