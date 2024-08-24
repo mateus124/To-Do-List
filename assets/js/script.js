@@ -1,3 +1,9 @@
+//função editar texto do modal
+function editTextModal(p, h2) {
+    document.querySelector('.modal-title > p').innerHTML = p;
+    document.querySelector('.modal-title > h2').innerHTML = h2;
+}
+
 //função fechar modal
 function closeModalF(e) {
     e.preventDefault();
@@ -31,8 +37,7 @@ function loadEdit() {
 
             let taskContent = JSON.parse(localStorage.getItem(button.id));
 
-            document.querySelector('.modal-title > p').innerHTML = "Editar a tarefa";
-            document.querySelector('.modal-title > h2').innerHTML = taskContent.name;
+            editTextModal("Editar a tarefa", taskContent.name);
 
             document.querySelector('#name').value = taskContent.name;
             document.querySelector('#desc').value = taskContent.desc;
@@ -66,9 +71,13 @@ function loadDelete() {
 
 //Funçao de adicionar novas tasks
 function addNewTask(newName, newDesc, id) {
+    if(newName == "") {
+        return;
+    }
     const taskExample = document.querySelector('.task'),
     taskList = document.querySelector('.list');
 
+    //Configurando o cloneNode da nova task
     let clone = taskExample.cloneNode(true);
     clone.id = id;
     clone.querySelector('.task-data > h2').innerHTML = newName;
@@ -80,16 +89,19 @@ function addNewTask(newName, newDesc, id) {
     clone.querySelector('input[type="checkbox"]').id = id;
     clone.classList.remove('hidden');
 
-    const noTaskAlert = document.querySelector('.notask').classList.add('hidden');
+    //Sumindo a mensagem de não possuir task
+    noTaskAlert = document.querySelector('.notask').classList.add('hidden');
 
+    //Adicionando clone a lista
     taskList.appendChild(clone);
 
+    //Carregando as funções para a nova task
     loadDelete();
     loadEdit();
     loadCheck();
 }
 
-//Quantas tasks existem
+//quantas tasks existem
 if(!localStorage.getItem("id")) {
     localStorage.setItem("id", '0');
 }
@@ -101,10 +113,7 @@ modalBg = document.querySelector('.modal-bg');
 
 newTaskButton.addEventListener('click', () => {
     showModal();
-    
-    //editando texto do modal
-    document.querySelector('.modal-title > p').innerHTML = "Criar";
-    document.querySelector('.modal-title > h2').innerHTML = "Adicione uma tarefa";
+    editTextModal("Criar", "Adicione uma tarefa");
 
     //Criando nova tarefa
     const modalForm = document.querySelector('.modal-form');
@@ -118,10 +127,13 @@ newTaskButton.addEventListener('click', () => {
 
         localStorage.setItem(localStorage.getItem("id"), JSON.stringify(task));
         addNewTask(task.name, task.desc, localStorage.getItem("id"));
-        localStorage.setItem("id", `${parseInt(localStorage.getItem("id"))+1}`);
+        localStorage.setItem("id", `${parseInt(localStorage.getItem("id"))+1}`); //id++
 
         document.querySelector('#name').value = "";
         document.querySelector('#desc').value = "";
+        
+        document.querySelector('.modal').classList.remove('modal-show');
+        document.querySelector('.modal-bg').classList.remove('modal-bg-show');
     });
 });
 
@@ -141,7 +153,3 @@ for(let i = 0; i <= parseInt(localStorage.getItem("id")); i++) {
         addNewTask(cloneData.name, cloneData.desc, i);
     }
 }
-
-loadDelete();
-loadEdit();
-loadCheck();
