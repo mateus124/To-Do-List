@@ -11,6 +11,17 @@ function showModal() {
     modalBg.classList.add('modal-bg-show');
 }
 
+//função marcar o texto
+function loadCheck() {
+    checkBoxList = document.querySelectorAll('input[type="checkbox"]');
+    checkBoxList.forEach((item) => {
+        item.addEventListener("change", () => {
+            document.querySelector(`p[id="${item.id}"]`).classList.toggle('checked');
+            document.querySelector(`h2[id="${item.id}"]`).classList.toggle('checked');
+        });
+    })
+}
+
 //Função dos botoes de editar
 function loadEdit() {
     const editButtons = document.querySelectorAll('.task-edit');
@@ -62,8 +73,11 @@ function addNewTask(newName, newDesc, id) {
     clone.id = id;
     clone.querySelector('.task-data > h2').innerHTML = newName;
     clone.querySelector('.task-data > p').innerHTML = newDesc;
+    clone.querySelector('.task-data > h2').id = id;
+    clone.querySelector('.task-data > p').id = id;
     clone.querySelector('.task-delete').id = id;
     clone.querySelector('.task-edit').id = id;
+    clone.querySelector('input[type="checkbox"]').id = id;
     clone.classList.remove('hidden');
 
     const noTaskAlert = document.querySelector('.notask').classList.add('hidden');
@@ -72,6 +86,7 @@ function addNewTask(newName, newDesc, id) {
 
     loadDelete();
     loadEdit();
+    loadCheck();
 }
 
 //Quantas tasks existem
@@ -129,3 +144,4 @@ for(let i = 0; i <= parseInt(localStorage.getItem("id")); i++) {
 
 loadDelete();
 loadEdit();
+loadCheck();
